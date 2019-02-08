@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hello', function() {
+    return response()->json([
+        'success' => true,
+        'message' => 'API is working correctly.'
+    ]);
+});
