@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Writing Prompts
                 </div>
 
                 <div class="links">
