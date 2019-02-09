@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Topics;
-use App\Model\User;
+use App\Models\Topic;
+use App\User;
 
 
 class HomeController extends Controller
@@ -12,7 +12,11 @@ class HomeController extends Controller
     
     public function index(){
 
-        {{ base_url  }}/{{ version  }}/venues/1/spaces/
-
+        $User = User::findOrFail(1);
+        return response()->json([
+            'success' => true,
+            'message' => 'API is working correctly.',
+            'user' => $User->topics()->get() ,
+        ]);
     }
 }
