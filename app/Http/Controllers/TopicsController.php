@@ -19,7 +19,14 @@ class TopicController extends Controller
             'Topics' => $User->topics()->get() ,
         ]);
     }
+    /**
+     * Store a new user.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(){
 
-
+    }
  
 }
