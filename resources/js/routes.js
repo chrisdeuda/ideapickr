@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 import TopicsIndex from "./components/ExampleComponent.vue";
 import HomeComponent from "./components/HomeComponent.vue";
-import DashboardComponent from "./components/Admin/Dashboard.vue";
+import DashboardComponent from "./components/dashboard.vue";
 
 const routes = [
     {
