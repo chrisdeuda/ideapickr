@@ -8,6 +8,7 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 import VueRouter from "vue-router";
+import router from "./routes.js";
 window.Vue.use(VueRouter);
 
 import VueAxios from "vue-axios";
@@ -15,9 +16,6 @@ import axios from "axios";
 
 import App from "./App.vue";
 Vue.use(VueAxios, axios);
-
-import TopicsIndex from "./components/ExampleComponent.vue";
-import HomeComponent from "./components/HomeComponent.vue";
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,14 +28,6 @@ import HomeComponent from "./components/HomeComponent.vue";
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-const routes = [
-    {
-        name: "home",
-        path: "/",
-        component: HomeComponent,
-    },
-];
-
 Vue.component(
     "example-component",
     require("./components/ExampleComponent.vue").default
@@ -48,7 +38,5 @@ Vue.component(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-const router = new VueRouter({ mode: "history", routes: routes });
 
 const app = new Vue(Vue.util.extend({ router }, App)).$mount("#app");
