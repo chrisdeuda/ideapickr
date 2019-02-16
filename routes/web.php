@@ -21,10 +21,6 @@ Route::get('/hello', function() {
         'message' => 'API is working correctly.'
     ]);
 });
-Route::group(['prefix'=>'v1','as'=>'api.'], function(){
-    Route::get('/topics', 'TopicController@index');
-    Route::post('/topic', 'TopicController@store');
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
