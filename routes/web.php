@@ -22,5 +22,6 @@ Route::get('/hello', function() {
     ]);
 });
 Route::group(['prefix'=>'v1','as'=>'api.'], function(){
-    Route::get('/home', 'HomeController@index');
+    Route::get('/topics', 'TopicController@index');
+    Route::post('/topic', 'TopicController@store');
 });
