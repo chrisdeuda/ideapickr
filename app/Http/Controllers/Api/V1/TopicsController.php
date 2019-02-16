@@ -4,11 +4,25 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Topics;
+
+use App\Repositories\TopicRepositoryInterface;
+
+use App\Models\Topic;
 use App\User;
 
 class TopicsController extends Controller
 {
+    protected $topic;
+    /**
+     * TopicController constructor.
+     * 
+     * @param TopicRepositoryInterface $topic
+     * 
+     */
+
+     public function __construct(TopicRepositoryInterface $topic){
+         $this->topic = $topic;
+     }
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +31,9 @@ class TopicsController extends Controller
     public function index()
     {
         $user_id = 1;
-        $User = User::findOrFail($user_id);
         return response()->json([
             'success' => true,
-            'Topics' => $User->topics()->get() ,
+            'topics' => $this->topic->findBy('user_id', $user_id),
         ]);
     }
 
@@ -47,11 +60,10 @@ class TopicsController extends Controller
          */
         $input = $request->all();
         $user_id = 1;
-        $Topic = Topics::create($input);
-
+        $topic_id = $this->topic->save( $input);
         return response()->json([
             'success' => true,
-            'id' => $Topic->id ,
+            'id' => $topic_id ,
         ]);
     }
 
