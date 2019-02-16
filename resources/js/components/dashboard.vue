@@ -32,7 +32,7 @@
             getUserData(){
                 const self = this;
                 axios.get('/api/v1/topics').then((res) => {
-                    self.Writer.topics = res.data.Topics;
+                    self.Writer.topics = res.data.topics;
 
                     console.log(res);
                      }).catch((error) => {
