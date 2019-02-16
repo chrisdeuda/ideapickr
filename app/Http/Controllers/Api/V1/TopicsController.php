@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Topics;
+use App\User;
 
 class TopicsController extends Controller
 {
@@ -14,7 +16,12 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = 1;
+        $User = User::findOrFail($user_id);
+        return response()->json([
+            'success' => true,
+            'Topics' => $User->topics()->get() ,
+        ]);
     }
 
     /**
@@ -35,7 +42,17 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * @TODO Add validations of inputs
+         */
+        $input = $request->all();
+        $user_id = 1;
+        $Topic = Topics::create($input);
+
+        return response()->json([
+            'success' => true,
+            'id' => $Topic->id ,
+        ]);
     }
 
     /**

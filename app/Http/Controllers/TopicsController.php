@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Topics;
-use App\User;
+
 
 
 class TopicController extends Controller
@@ -27,16 +26,6 @@ class TopicController extends Controller
      */
     public function store(Request $request){
 
-        /**
-         * @TODO Add validations of inputs
-         */
-        $input = $request->all();
-        $user_id = 1;
-        $Topic = Topics::create($input);
-
-        return response()->json([
-            'success' => true,
-            'id' => $Topic->id ,
-        ]);
+        
     } 
 }
