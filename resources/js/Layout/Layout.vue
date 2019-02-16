@@ -1,18 +1,7 @@
 <template>
   <div class="container">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/posts" class="nav-link">Posts</router-link>
-        </li>
-      </ul>
-    </nav><br />
+    <dashboard-header></dashboard-header>
+    <br />
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -29,6 +18,9 @@
 </style>
 
 <script>
+    import Vue from 'vue';
+
+    Vue.component('dashboard-header', require('./components/admin/header/header.vue').default);
     export default{
         mounted() {
             console.log('Parent Layout mounted.')
