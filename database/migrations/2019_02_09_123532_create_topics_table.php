@@ -15,13 +15,20 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
 			$table->string('title', 500);
 			$table->string('description', 250);
 			$table->string('status', 10);
 			$table->boolean('is_selected');
             $table->string('categories');
             $table->timestamps();
+
+            // Relationship
+            // $table->foreign('user_id')
+            //         ->referrences('users')
+            //         ->on('id')
+            //         ->onDelete('cascade');
+
         });
     }
 
