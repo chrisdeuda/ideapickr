@@ -22,7 +22,7 @@
         },
         props: {
             p_topics: {
-                type: Object,
+                type: Array,
                 required:true,
             }
         }
