@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>I'm dashboard</h1>
+        <topic-add></topic-add>
         <topics-list :p_topics="Writer.topics"></topics-list>
     </div>
 </template>
@@ -9,6 +10,7 @@
     import Vue from 'vue';
     import axios from 'axios';
     
+    Vue.component('topic-add', require('./admin/topic-add.vue').default);
     Vue.component('topics-list', require('./admin/topics-list.vue').default);
     
     export default {
