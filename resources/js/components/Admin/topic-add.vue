@@ -2,13 +2,18 @@
     <div>
         <form action="" autocomplete="off" class="form-horizontal" method="post" accept-charset="utf-8">
         <div class="input-group">
-            <input name="searchtext" value="" class="form-control" type="text" placeholder="What's your new idea?">
+            <input name="searchtext" value="" class="form-control" type="text" placeholder="What's your new idea?"
+                v-model="Topic.title"
+                
+            >
             <span class="input-group-btn">
                <button class="btn btn-default" type="submit" id="addressSearch">
                    <span class="icon-search"></span>
                </button>
             </span>
-            <button type="submit" class="btn btn-primary mb-2">Add</button>
+            <button type="submit" class="btn btn-primary mb-2" 
+                v-on:click="save"
+                >Add</button>
         </div>
     </form>
 
@@ -17,19 +22,42 @@
 
 <script>
   import Vue from 'vue';
+  import axios from 'axios';
     export default {
         data() {
             return {
-                Topic: null,
+                Topic: {
+                    title: null,
+                    description: null,
+                    id: null,
+                }
             };
         },
         props: {
             
         },
         methods: {
-            save: function(){
+            save: function(event){
+                event.preventDefault();
 
                 //@TODO Add validations
+                alert("Trying to save it");
+                const self = this;
+                const p_action = "/api/v1/topic";
+                axios.post('/api/v1/topic', {
+                            title: self.Topic.title,
+                            description: self.Topic.description,
+
+
+                }).then((res) => {
+                    if (res.data.success == true) {
+                        console.log(res);
+                    } else {
+                        
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                });
                 
 
                 // Process the request
