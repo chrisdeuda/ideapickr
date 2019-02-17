@@ -17,10 +17,10 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
 			$table->string('title', 500);
-			$table->string('description', 250);
+			$table->string('description', 250)->nullable();
 			$table->string('status', 10);
 			$table->boolean('is_selected');
-            $table->string('categories');
+            $table->string('categories')->nullable();
             $table->timestamps();
 
             // Relationship
