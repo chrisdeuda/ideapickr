@@ -54,11 +54,11 @@ class TopicRepository implements TopicRepositoryInterface{
      */
     public function save( array $topic_data){
 
-        $default_data =array(
-            "status" => "todo",
-            "is_selected" => "0",
-            "categories" => "empty",
-            "user_id" => 1, // @TODO - make it dynamic
+        $default_data = array(
+            "status"        => "todo",
+            "is_selected"   => "0",
+            "categories"    => null,
+            "user_id"       => 1, // @TODO - make it dynamic
         );
         $new_topic_data = $default_data + $topic_data;
 
