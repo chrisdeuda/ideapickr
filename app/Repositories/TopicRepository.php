@@ -53,7 +53,17 @@ class TopicRepository implements TopicRepositoryInterface{
      * @param array
      */
     public function save( array $topic_data){
-        $Topic = Topic::create($topic_data);
+
+        $default_data =array(
+            "status" => "todo",
+            "is_selected" => "0",
+            "categories" => "empty",
+            "user_id" => 1, // @TODO - make it dynamic
+        );
+        $new_topic_data = $default_data + $topic_data;
+
+
+        $Topic = Topic::create($new_topic_data);
         return $Topic->id;
     }
 
