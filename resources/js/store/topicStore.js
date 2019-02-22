@@ -13,7 +13,7 @@ const topicStore = new Vuex.Store({
         topics: state => state.topics,
     },
     mutations: {
-        FETCH(state, topics) {
+        FETCH_ALL_TOPICS(state, topics) {
             state.topics = topics;
             console.log("Updated the state values");
         },
@@ -35,7 +35,7 @@ const topicStore = new Vuex.Store({
                 .get("/api/v1/topics")
                 .then(res => {
                     console.log(res.data.topics);
-                    parent.commit("FETCH", res.data.topics);
+                    parent.commit("FETCH_ALL_TOPICS", res.data.topics);
                 })
                 .catch(error => {
                     console.log(error);
