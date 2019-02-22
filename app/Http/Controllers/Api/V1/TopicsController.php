@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\TopicRepositoryInterface;
+use App\Services\TopicService;
 
 use App\Models\Topic;
 use App\User;
 
 class TopicsController extends Controller
 {
-    protected $topic;
+    protected $TopicService;
     /**
      * TopicController constructor.
      * 
@@ -20,8 +21,8 @@ class TopicsController extends Controller
      * 
      */
 
-     public function __construct(TopicRepositoryInterface $topic){
-         $this->topic = $topic;
+     public function __construct(){
+         //$this->topic = $topic;
      }
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class TopicsController extends Controller
         $user_id = 1;
         return response()->json([
             'success' => true,
-            'topics' => $this->topic->findBy('user_id', $user_id),
+            //'topics' => $this->topic->findBy('user_id', $user_id),
         ]);
     }
 
@@ -53,17 +54,24 @@ class TopicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, TopicService $TopicService)
     {
         /**
          * @TODO Add validations of inputs
          */
         $input = $request->all();
         $user_id = 1;
-        $topic_id = $this->topic->save( $input);
+        $response = $TopicService->saveTopic( $input);
+
+        if (!$response->validation){
+            return response()->json([
+                'success' => false,
+                'errors' => $response->errors ,
+            ]);
+        }
         return response()->json([
             'success' => true,
-            'id' => $topic_id ,
+            'id' => $response->id ,
         ]);
     }
 
