@@ -15,6 +15,9 @@ import VueAxios from "vue-axios";
 import axios from "axios";
 
 import App from "./App.vue";
+
+import topicStore from "./store/topicStore";
+
 Vue.use(VueAxios, axios);
 
 /**
@@ -39,4 +42,6 @@ Vue.component(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue(Vue.util.extend({ router }, App)).$mount("#app");
+const app = new Vue(Vue.util.extend({ router, store: topicStore }, App)).$mount(
+    "#app"
+);

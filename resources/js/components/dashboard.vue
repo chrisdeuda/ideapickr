@@ -2,12 +2,14 @@
     <div>
         <h1>I'm dashboard</h1>
         <topic-add></topic-add>
-        <topics-list :p_topics="Writer.topics"></topics-list>
+        <topics-list :p_topics="topics"></topics-list>
+        <p> {{ topicsLength}}</p>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
+    import { mapState } from 'vuex';
     import axios from 'axios';
     
     Vue.component('topic-add', require('./admin/topic-add.vue').default);
@@ -23,27 +25,30 @@
         },
         
         created: function() {
-            this.getUserData();
+            //this.getUserData();
+            this.$store.dispatch('GET_TOPICS_STATE')
+            console.log("Getting Topics from state");
 
         },
         
         mounted() {
-            console.log('Dashboard Component mounted.')
+            console.log('Dashboard Component mounted.');
+            console.log(this.topics);
         },
         methods: {
             getUserData(){
                 const self = this;
-                axios.get('/api/v1/topics').then((res) => {
-                    self.Writer.topics = res.data.topics;
-
-                    console.log(res);
-                     }).catch((error) => {
-                    // snackbar error
-                });
-
             }
-
         },
+        computed: {
+            //...mapState(['topics']),
+            topicsLength() {
+                return this.topics.length;
+            },
+            topics(){
+                return this.$store.getters.topics;
+            }
+        }
     }
 </script>
 

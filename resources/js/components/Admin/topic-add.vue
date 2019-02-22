@@ -23,6 +23,7 @@
 <script>
   import Vue from 'vue';
   import axios from 'axios';
+  import { mapState } from 'vuex';
     export default {
         data() {
             return {
@@ -40,24 +41,30 @@
             save: function(event){
                 event.preventDefault();
 
-                //@TODO Add validations
-                alert("Trying to save it");
-                const self = this;
-                const p_action = "/api/v1/topic";
-                axios.post('/api/v1/topic', {
-                            title: self.Topic.title,
-                            description: self.Topic.description,
+                this.$store.dispatch("SAVE_TOPIC_STATE", this.Topic);
 
 
-                }).then((res) => {
-                    if (res.data.success == true) {
-                        console.log(res);
-                    } else {
+
+                // //@TODO Add validations
+                // alert("Trying to save it");
+                // const self = this;
+                // const p_action = "/api/v1/topic";
+                // axios.post('/api/v1/topic', {
+                //             title: self.Topic.title,
+                //             description: self.Topic.description,
+
+                //             //Add state Management here so that thelist will be updated
+
+
+                // }).then((res) => {
+                //     if (res.data.success == true) {
+                //         console.log(res);
+                //     } else {
                         
-                    }
-                }).catch((error) => {
-                    console.log(error);
-                });
+                //     }
+                // }).catch((error) => {
+                //     console.log(error);
+                // });
                 
 
                 // Process the request
