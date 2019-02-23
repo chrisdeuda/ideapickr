@@ -9,7 +9,7 @@ use App\Repositories\TopicRepositoryInterface;
 use App\Services\TopicService;
 
 use App\Models\Topic;
-use App\User;
+use App\Models\User;
 
 class TopicsController extends Controller
 {
