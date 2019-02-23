@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class TopicsTableSeeder extends Seeder
 {
@@ -18,6 +19,8 @@ class TopicsTableSeeder extends Seeder
             'status' => 'todo',
             'is_selected' => 0,
             'categories' => 'empty',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('topics')->insert([
@@ -27,6 +30,8 @@ class TopicsTableSeeder extends Seeder
             'status' => 'todo',
             'is_selected' => 0,
             'categories' => 'empty',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }
