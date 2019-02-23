@@ -19,8 +19,11 @@ class CreateTopicsTable extends Migration
 			$table->string('title', 500);
 			$table->string('description', 250)->nullable();
 			$table->string('status', 10);
-			$table->boolean('is_selected');
+			$table->boolean('is_done')->default(0);
+			$table->boolean('is_selected')->default(0);
+			$table->boolean('is_inprogress')->default(0);
             $table->string('categories')->nullable();
+            $table->dateTimeTz('done_at')->nullable();;
             $table->timestamps();
 
             // Relationship
