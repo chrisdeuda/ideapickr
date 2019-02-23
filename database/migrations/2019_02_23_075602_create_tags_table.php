@@ -3,18 +3,19 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateHashtagTable extends Migration {
+class CreateTagsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('hashtag', function(Blueprint $table) {
+		Schema::create('tags', function(Blueprint $table) {
 			$table->integer('id', true);
+			$table->integer('user_id')->unsigned();
 			$table->string('name');
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('hashtag');
+		Schema::drop('tags');
 	}
 }
