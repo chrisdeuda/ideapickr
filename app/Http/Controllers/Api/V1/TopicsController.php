@@ -21,8 +21,8 @@ class TopicsController extends Controller
      * 
      */
 
-     public function __construct(){
-         //$this->topic = $topic;
+     public function __construct(TopicRepositoryInterface $topic){
+         $this->topic = $topic;
      }
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class TopicsController extends Controller
         $user_id = 1;
         return response()->json([
             'success' => true,
-            //'topics' => $this->topic->findBy('user_id', $user_id),
+            'topics' => $this->topic->findBy('user_id', $user_id),
         ]);
     }
 
