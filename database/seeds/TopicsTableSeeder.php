@@ -14,7 +14,7 @@ class TopicsTableSeeder extends Seeder
     {
         DB::table('topics')->insert([
             'user_id' => 1,
-            'title' => 'Topics 1 #category1',
+            'title' => 'Topics 1 #tag1 #tag2',
             'description' => 'The quick brown fox jumps over the lazy dog',
             'status' => 'todo',
             'is_selected' => 0,
@@ -25,7 +25,7 @@ class TopicsTableSeeder extends Seeder
 
         DB::table('topics')->insert([
             'user_id' => 1,
-            'title' => 'Topics 2 #category1',
+            'title' => 'Topics 2 #tag1 #tag2',
             'description' => 'The quick brown fox jumps over the lazy dog 2',
             'status' => 'todo',
             'is_selected' => 0,
