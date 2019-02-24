@@ -10,9 +10,13 @@ class Tag extends Model
     protected $table = 'tags';
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function users()
     {
-        return $this->belongsToMany('App\Models\Users');
+        return $this->belongsTo('App\Models\Users');
     }
 
     public function topics()
