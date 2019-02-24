@@ -41,13 +41,13 @@
             }
         },
         computed: {
-            //...mapState(['topics']),
+            ...mapState(['topics']),
             topicsLength() {
                 return this.topics.length;
             },
-            topics(){
-                return this.$store.getters.topics;
-            }
+            // topics(){
+            //     return this.$store.getters.topics;
+            // }
         }
     }
 </script>
