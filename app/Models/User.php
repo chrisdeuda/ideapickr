@@ -47,6 +47,6 @@ class User extends Authenticatable
     }
 
     public function tags(){
-        return $this->hasMany();
+        return $this->hasMany(Tag::class, 'user_id', 'id');
     }
 }
