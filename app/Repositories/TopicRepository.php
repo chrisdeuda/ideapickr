@@ -64,7 +64,7 @@ class TopicRepository implements TopicRepositoryInterface{
 
 
         $Topic = Topic::create($new_topic_data);
-        return $Topic->id;
+        return $Topic;
     }
 
 

@@ -4,6 +4,10 @@ namespace App\Services;
 use App\Repositories\TopicRepositoryInterface;
 use Validator;
 
+use App\Models\Tag;
+use App\Models\User;
+use App\Utilities\Tagger as TaggerHelper;
+
 
 
 class TopicService{
@@ -32,12 +36,22 @@ class TopicService{
             ];
             return (object)$response;
         }
+        $new_topic = $this->topic->save($topic);
+        $user_id = 1;
 
-        $topic_id = $this->topic->save($topic);
+        $User = User::find($user_id);
+        $is_user_exist = $User != null;
+        if ($is_user_exist) {
+            //Save tag to users
+            $tags = TaggerHelper::getHashTag($topic['title']);
+            
+            TaggerHelper::tagUser($User, $tags, $user_id);
+            $tagTopic = TaggerHelper::tagTopic($new_topic, $tags, $user_id);
+        }
 
         $response =[
             'validation' => true,
-            'id' => $topic_id,
+            'id' => $new_topic->id,
         ];
         return (object)$response;
     }

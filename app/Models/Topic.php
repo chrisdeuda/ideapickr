@@ -16,6 +16,7 @@ class Topic extends Model
         'is_selected',
         'categories' ,
     ];
+    protected $with = array('tags', );
     /**
      * Get the user from the owner of topic.
      */
@@ -23,4 +24,10 @@ class Topic extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function tags(){
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+    
 }
