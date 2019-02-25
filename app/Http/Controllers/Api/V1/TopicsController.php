@@ -10,6 +10,7 @@ use App\Services\TopicService;
 
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Tag;
 
 class TopicsController extends Controller
 {
@@ -119,4 +120,22 @@ class TopicsController extends Controller
     {
         //
     }
+    /**
+     * Pick a random topics from the list
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getRandomTopic(Request $request, TopicService $TopicService)
+    {
+        
+        return response()->json([
+            'success' => true,
+            'topics' => $TopicService->getRandomTopic( ),
+        ]);
+    }
+
+
+
+    
 }

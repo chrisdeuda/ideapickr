@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::get('/topics/randomize', 'TopicsController@getRandomTopic');
     Route::resource('topics', 'TopicsController', ['except' => ['create', 'edit']]);
     Route::post('/topic', 'TopicsController@store');
 });

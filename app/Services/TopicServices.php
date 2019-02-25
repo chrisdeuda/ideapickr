@@ -55,4 +55,18 @@ class TopicService{
         ];
         return (object)$response;
     }
+
+    /**
+     * It will return a random topic from users topics
+     * @return App\Model\Topic
+     */
+    public function getRandomTopic(){
+        $user_id        = 1;
+        $User           = User::find($user_id);
+        $topics         = $User->topics()->get();
+        $topic_count    = $topics->count();
+        $random_number  = rand(0,$topic_count - 1);
+        $selected_topic = $topics[$random_number];
+        return $selected_topic;
+    }
 }
