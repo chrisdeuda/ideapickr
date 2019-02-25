@@ -4,11 +4,26 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Topics;
-use App\User;
+
+use App\Repositories\TopicRepositoryInterface;
+use App\Services\TopicService;
+
+use App\Models\Topic;
+use App\Models\User;
 
 class TopicsController extends Controller
 {
+    protected $TopicService;
+    /**
+     * TopicController constructor.
+     * 
+     * @param TopicRepositoryInterface $topic
+     * 
+     */
+
+     public function __construct(TopicRepositoryInterface $topic){
+         $this->topic = $topic;
+     }
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +32,9 @@ class TopicsController extends Controller
     public function index()
     {
         $user_id = 1;
-        $User = User::findOrFail($user_id);
         return response()->json([
             'success' => true,
-            'Topics' => $User->topics()->get() ,
+            'topics' => $this->topic->findBy('user_id', $user_id),
         ]);
     }
 
@@ -40,18 +54,24 @@ class TopicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, TopicService $TopicService)
     {
         /**
          * @TODO Add validations of inputs
          */
         $input = $request->all();
         $user_id = 1;
-        $Topic = Topics::create($input);
+        $response = $TopicService->saveTopic( $input);
 
+        if (!$response->validation){
+            return response()->json([
+                'success' => false,
+                'errors' => $response->errors ,
+            ]);
+        }
         return response()->json([
             'success' => true,
-            'id' => $Topic->id ,
+            'id' => $response->id ,
         ]);
     }
 
