@@ -7,7 +7,13 @@ Vue.use(Vuex);
 const topicStore = new Vuex.Store({
     state: {
         topics: [{ test: "1" }, { test: "2" }],
-        //topic,
+        // random_topic: {
+        //     title: "Lorem Ipsum",
+        //     description: "Lorem Ipsum",
+        //     id: "1",
+        // },
+        random_topicc: {},
+        topic: {},
     },
     getters: {
         topics: state => state.topics,
@@ -24,6 +30,9 @@ const topicStore = new Vuex.Store({
                 id: payload.id,
             };
             state.topics.unshift(topic);
+        },
+        CHANGE_RANDOM_TOPIC(state, topic) {
+            state.random_topic = topic;
         },
     },
 
@@ -60,6 +69,24 @@ const topicStore = new Vuex.Store({
                 });
         },
         edit({}, topic) {},
+
+        GET_RANDOM_TOPIC(state, topic) {
+            const p_action = "/api/v1/topics/randomize";
+            axios
+                .get(p_action, {
+                    // title: topic.title,
+                    // description: topic.description,
+                })
+                .then(res => {
+                    if (res.data.success == true) {
+                        parent.commit("CHANGE_RANDOM_TOPIC", topic);
+                    } else {
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
     },
 });
 
