@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Topics;
+use App\Models\Topic;
+use App\Models\Tag;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,10 @@ class User extends Authenticatable
      * Get the topics
      */
     public function topics(){
-        return $this->hasMany(Topics::class, 'user_id', 'id');
+        return $this->hasMany(Topic::class, 'user_id', 'id');
+    }
+
+    public function tags(){
+        return $this->hasMany(Tag::class, 'user_id', 'id');
     }
 }
