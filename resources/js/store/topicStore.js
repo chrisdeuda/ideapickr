@@ -12,7 +12,7 @@ const topicStore = new Vuex.Store({
         //     description: "Lorem Ipsum",
         //     id: "1",
         // },
-        random_topicc: {},
+        random_topic: {},
         topic: {},
     },
     getters: {
@@ -79,7 +79,8 @@ const topicStore = new Vuex.Store({
                 })
                 .then(res => {
                     if (res.data.success == true) {
-                        parent.commit("CHANGE_RANDOM_TOPIC", topic);
+                        parent.commit("CHANGE_RANDOM_TOPIC", res.data.topic);
+                        console.log("Trigger change random topic");
                     } else {
                     }
                 })
