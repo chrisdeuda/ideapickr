@@ -131,7 +131,7 @@ class TopicsController extends Controller
         
         return response()->json([
             'success' => true,
-            'topics' => $TopicService->getRandomTopic( ),
+            'topic' => $TopicService->getRandomTopic( ),
         ]);
     }
 
