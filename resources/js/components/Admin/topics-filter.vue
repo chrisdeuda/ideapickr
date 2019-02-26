@@ -6,7 +6,9 @@
                 <h2>Filter</h2>
                 <button type="button" class="btn btn-warning"
                     v-on:click="clearAllActiveTags"
-                    >Clear</button>
+                >
+                    Clear
+                </button>
             </div>
         </div>
         <div class="row">
@@ -40,8 +42,11 @@
             },
         },
         methods: {
+            /**
+             * Toggle the active class of the button if click twice
+             */
             toggleTagSelected(index, tag){
-                // Toggle the active class of the button if click twice
+                
                 if(tag.hasOwnProperty('is_selected')){
                     var $is_active_tag = tag['is_selected'] == true;
                     if ($is_active_tag){
@@ -63,7 +68,6 @@
             },
             clearAllActiveTags(){
                 this.$store.dispatch('clearAllSelectedTags');
-                
             }
         }
     }
