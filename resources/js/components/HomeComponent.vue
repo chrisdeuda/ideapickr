@@ -1,5 +1,6 @@
 <template>
   <div class="row justify-content-center">
+      <topics-filter :p_random_topic="random_topic"></topics-filter>
       <topics-randomize :p_random_topic="random_topic"></topics-randomize>
   </div>
 </template>
@@ -8,6 +9,7 @@
     import Vue from 'vue';
     import { mapState } from 'vuex';
     Vue.component('topics-randomize', require('./admin/topics-randomize.vue').default);
+    Vue.component('topics-filter', require('./admin/topics-filter.vue').default);
     export default {
         date (){
             return {

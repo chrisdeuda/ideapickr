@@ -1,14 +1,23 @@
 <template>
     <div>
-        <div>
-            
-            <h3>Random Topics</h3>
-            <h2> {{p_random_topic.title}}</h2>
-            
-            <p> {{p_random_topic.description}}</p>
-            <button v-on:click="getNewTopic"> Give me new topic</button>
+        <div class="row">
+            <div class="col-lg">
+                <h2> {{p_random_topic.title}}</h2>
+                <p> {{p_random_topic.description}}</p>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-lg">
+                <div class="mx-auto" style="width: 200px;">
+                    <button type="button" class="btn btn-primary btn-lg"
+                        v-on:click="getNewTopic">Give me new topic        
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+    
+
 </template>
 
 <script>
@@ -33,12 +42,13 @@
                 this.$store.dispatch("GET_RANDOM_TOPIC", this.Topic);
                 
             }
-
         }
-           
     }
 </script>
 
 <style scoped>
+.spacer {
+    margin-top: 40px; /* define margin as you see fit */
+}
 
 </style>
