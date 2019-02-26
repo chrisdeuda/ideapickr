@@ -14,6 +14,7 @@ const topicStore = new Vuex.Store({
         // },
         random_topic: {},
         topic: {},
+        tags: {},
     },
     getters: {
         topics: state => state.topics,
@@ -33,6 +34,9 @@ const topicStore = new Vuex.Store({
         },
         CHANGE_RANDOM_TOPIC(state, topic) {
             state.random_topic = topic;
+        },
+        CHANGE_TAGS(state, tags) {
+            state.tags = tags;
         },
     },
 
@@ -82,6 +86,25 @@ const topicStore = new Vuex.Store({
                     if (res.data.success == true) {
                         parent.commit("CHANGE_RANDOM_TOPIC", res.data.topic);
                         console.log("Trigger change random topic");
+                    } else {
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        GET_USER_TAGS(state, tags) {
+            parent = this;
+            const p_action = "/api/v1/tags";
+            axios
+                .get(p_action, {
+                    // title: topic.title,
+                    // description: topic.description,
+                })
+                .then(res => {
+                    if (res.data.success == true) {
+                        parent.commit("CHANGE_TAGS", res.data.tags);
                     } else {
                     }
                 })
