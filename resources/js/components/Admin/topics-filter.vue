@@ -11,7 +11,7 @@
                 <div class="mx-auto" style="width: 500px;">
                     <button 
                         v-for="(tag,index) in tags" :key="index"
-                        v-on:click="addSelectedTag(index, tag)"
+                        v-on:click="toggleTagSelected(index, tag)"
                         :class ="{active: tag.is_selected}"
                         type="button" class="btn btn-outline-secondary">
                         {{tag.name}}
@@ -30,36 +30,33 @@
 
             }
         },
-        // props:{
-        //     p_tags: {
-        //         type: Object,
-        //         required:true,
-        //     }
-        // },
         computed: {
             ...mapState(['selected_tags', 'tags']),
             topicsLength() {
                 return this.topics.length;
             },
-            // topics(){
-            //     return this.$store.getters.topics;
-            // }
         },
         methods: {
-            addSelectedTag(index, tag){
+            toggleTagSelected(index, tag){
                 // Toggle the active class of the button if click twice
                 if(tag.hasOwnProperty('is_selected')){
                     var $is_active_tag = tag['is_selected'] == true;
                     if ($is_active_tag){
-                        this.$store.dispatch('removeSelectedTag', index, tag);
+                        this.triggerTagAsDeselected(index, tag);
                     }else{
-                        this.$store.dispatch('addSelectedTag', index, tag);
+                        this.triggerTagAsSelected(index, tag);
                     }
                 } else {
-                    this.$store.dispatch('addSelectedTag', index, tag);
+                    this.triggerTagAsSelected(index, tag);
                 }
+            },
 
-                console.log(tag);
+            triggerTagAsSelected(index, tag){
+                this.$store.dispatch('addSelectedTag', index, tag);
+
+            },
+            triggerTagAsDeselected(index, tag){
+                this.$store.dispatch('removeSelectedTag', index, tag);
             }
         }
     }
