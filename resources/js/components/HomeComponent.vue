@@ -1,21 +1,31 @@
 <template>
   <div class="row justify-content-center">
-      <div class="col-md-8">
-          <div class="card card-default">
-              <div class="card-header">Home Component</div>
-
-              <div class="card-body">
-                  I'm the Home Component component.
-              </div>
-          </div>
-      </div>
+      <topics-randomize :p_random_topic="random_topic"></topics-randomize>
   </div>
 </template>
 
 <script>
+    import Vue from 'vue';
+    import { mapState } from 'vuex';
+    Vue.component('topics-randomize', require('./admin/topics-randomize.vue').default);
     export default {
+        date (){
+            return {
+
+            }
+        },
+
+        created: function(){
+            this.$store.dispatch('GET_RANDOM_TOPIC');
+            console.log("Trigger creations of the page");
+            
+
+        },
         mounted() {
             console.log('Home Component mounted.')
+        },
+        computed: {
+            ...mapState(['topics', 'random_topic']),
         }
     }
 </script>

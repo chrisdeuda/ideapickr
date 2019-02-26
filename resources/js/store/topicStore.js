@@ -71,6 +71,7 @@ const topicStore = new Vuex.Store({
         edit({}, topic) {},
 
         GET_RANDOM_TOPIC(state, topic) {
+            parent = this;
             const p_action = "/api/v1/topics/randomize";
             axios
                 .get(p_action, {
