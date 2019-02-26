@@ -44,7 +44,11 @@
             getNewTopic: function(event){
                 // Add categories search
                 this.$store.dispatch("GET_RANDOM_TOPIC", this.Topic);
-                
+            }
+        },
+        computed: {
+            selected_tags () {
+                return this.$store.getters.getSelectedTags;
             }
         }
     }
