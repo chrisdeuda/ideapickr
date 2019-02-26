@@ -1,9 +1,13 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row spacer" >
             <div class="col-lg">
-                <h2> {{p_random_topic.title}}</h2>
-                <p> {{p_random_topic.description}}</p>
+                <div class="mx-auto" style="width: 500px;">
+                    <h2> {{p_random_topic.title}}</h2>
+                    <p> {{p_random_topic.description}}</p>
+
+                </div>
+                
             </div>
         </div>
         <div class="row spacer">
