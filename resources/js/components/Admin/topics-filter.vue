@@ -46,8 +46,8 @@
              * Toggle the active class of the button if click twice
              */
             toggleTagSelected(index, tag){
-                
-                if(tag.hasOwnProperty('is_selected')){
+                var is_selected_exist =  tag.hasOwnProperty('is_selected');
+                if(is_selected_exist){
                     var $is_active_tag = tag['is_selected'] == true;
                     if ($is_active_tag){
                         this.triggerTagAsDeselected(index, tag);
@@ -61,7 +61,6 @@
 
             triggerTagAsSelected(index, tag){
                 this.$store.dispatch('addSelectedTag', index, tag);
-
             },
             triggerTagAsDeselected(index, tag){
                 this.$store.dispatch('removeSelectedTag', index, tag);

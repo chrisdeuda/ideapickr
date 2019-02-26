@@ -1,17 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axious from "axios";
+import axios from "axios";
 
 Vue.use(Vuex);
 
 const topicStore = new Vuex.Store({
     state: {
-        topics: [{ test: "1" }, { test: "2" }],
-        // random_topic: {
-        //     title: "Lorem Ipsum",
-        //     description: "Lorem Ipsum",
-        //     id: "1",
-        // },
+        topics: [],
         random_topic: {},
         topic: {},
         tags: [],
@@ -19,10 +14,6 @@ const topicStore = new Vuex.Store({
     },
     getters: {
         topics: state => state.topics,
-
-        // this.specialityTest.filter((el) => {
-        //     return (el.person =="physician")
-
         selectedTags: state => {
             return state.tags.filter(tag => tag.is_selected);
         },
@@ -50,8 +41,6 @@ const topicStore = new Vuex.Store({
             var $tag = state.tags[index];
             $tag["is_selected"] = true;
             state.tags.splice(index, 1, $tag);
-
-            console.log("Updated selected tags");
         },
         UNMARK_TAG_AS_SELECTED(state, index) {
             var $tag = state.tags[index];
@@ -98,10 +87,7 @@ const topicStore = new Vuex.Store({
             parent = this;
             const p_action = "/api/v1/topics/randomize";
             axios
-                .get(p_action, {
-                    // title: topic.title,
-                    // description: topic.description,
-                })
+                .get(p_action, {})
                 .then(res => {
                     if (res.data.success == true) {
                         parent.commit("CHANGE_RANDOM_TOPIC", res.data.topic);
@@ -118,14 +104,10 @@ const topicStore = new Vuex.Store({
             parent = this;
             const p_action = "/api/v1/tags";
             axios
-                .get(p_action, {
-                    // title: topic.title,
-                    // description: topic.description,
-                })
+                .get(p_action, {})
                 .then(res => {
                     if (res.data.success == true) {
                         parent.commit("CHANGE_TAGS", res.data.tags);
-                    } else {
                     }
                 })
                 .catch(error => {
@@ -141,8 +123,6 @@ const topicStore = new Vuex.Store({
         },
         clearAllSelectedTags(context) {
             var key = "is_selected";
-            var $selected_tags = context.getters.selectedTags;
-
             var $tags = context.state.tags.map(function(tag) {
                 tag[key] = false;
                 return tag;
