@@ -29,8 +29,8 @@
         
         created: function() {
             //this.getUserData();
-            this.$store.dispatch('GET_TOPICS_STATE')
-            this.$store.dispatch('GET_RANDOM_TOPIC')
+            this.$store.dispatch('GET_TOPICS_STATE');
+            this.$store.dispatch('GET_RANDOM_TOPIC');
             console.log("Getting Topics from state");
 
         },
