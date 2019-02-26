@@ -139,6 +139,16 @@ const topicStore = new Vuex.Store({
         removeSelectedTag(context, index, tag) {
             context.commit("UNMARK_TAG_AS_SELECTED", index);
         },
+        clearAllSelectedTags(context) {
+            var key = "is_selected";
+            var $selected_tags = context.getters.selectedTags;
+
+            var $tags = context.state.tags.map(function(tag) {
+                tag[key] = false;
+                return tag;
+            });
+            context.commit("CHANGE_TAGS", $tags);
+        },
     },
 });
 
