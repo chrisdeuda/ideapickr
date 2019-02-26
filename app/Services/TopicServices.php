@@ -69,4 +69,9 @@ class TopicService{
         $selected_topic = $topics[$random_number];
         return $selected_topic;
     }
+
+    public function getTags(){
+        $user_id        = 1;
+        return  User::find($user_id)->tags()->get();
+    }
 }

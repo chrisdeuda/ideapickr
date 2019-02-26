@@ -135,6 +135,13 @@ class TopicsController extends Controller
         ]);
     }
 
+    public function getTags(Request $request, TopicService $TopicService ){
+        return response()->json([
+            'success' => true,
+            'tags' => $TopicService->getTags( ),
+        ]);
+    }
+
 
 
     
