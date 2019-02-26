@@ -9,13 +9,11 @@
         <div class="row">
             <div class="col-lg">
                 <div class="mx-auto" style="width: 500px;">
-                    <button type="button" class="btn btn-outline-secondary">tag1</button>
-                    <button type="button" class="btn btn-outline-secondary">tag2</button>
-                    <button type="button" class="btn btn-outline-secondary">tag3</button>
-                    <button type="button" class="btn btn-outline-secondary">tag4</button>
-                    <button type="button" class="btn btn-outline-secondary">tag5</button>
-                    <button type="button" class="btn btn-outline-secondary">tag6</button>
-                    <button type="button" class="btn btn-outline-secondary">tag7</button>
+                    <button 
+                        v-for="(tag,index) in p_tags" :key="index"
+                        type="button" class="btn btn-outline-secondary">
+                        {{tag.name}}
+                    </button>
                 </div>
             </div>
         </div>
@@ -24,6 +22,17 @@
 
 <script>
     export default {
+        data(){
+            return {
+
+            }
+        },
+        props:{
+            p_tags: {
+                type: Object,
+                required:true,
+            }
+        },
         
     }
 </script>
