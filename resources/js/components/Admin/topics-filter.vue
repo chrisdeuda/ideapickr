@@ -4,6 +4,9 @@
             <div class="col-lg">
                 <h1>Random Topics</h1>
                 <h2>Filter</h2>
+                <button type="button" class="btn btn-warning"
+                    v-on:click="clearAllActiveTags"
+                    >Clear</button>
             </div>
         </div>
         <div class="row">
@@ -57,6 +60,10 @@
             },
             triggerTagAsDeselected(index, tag){
                 this.$store.dispatch('removeSelectedTag', index, tag);
+            },
+            clearAllActiveTags(){
+                this.$store.dispatch('clearAllSelectedTags');
+                
             }
         }
     }
