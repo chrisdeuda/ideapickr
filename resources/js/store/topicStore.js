@@ -14,10 +14,18 @@ const topicStore = new Vuex.Store({
         // },
         random_topic: {},
         topic: {},
-        tags: {},
+        tags: [],
+        selected_tags: [],
     },
     getters: {
         topics: state => state.topics,
+
+        // this.specialityTest.filter((el) => {
+        //     return (el.person =="physician")
+
+        selectedTags: state => {
+            return state.tags.filter(tag => tag.is_selected);
+        },
     },
     mutations: {
         FETCH_ALL_TOPICS(state, topics) {
@@ -37,6 +45,18 @@ const topicStore = new Vuex.Store({
         },
         CHANGE_TAGS(state, tags) {
             state.tags = tags;
+        },
+        MARK_TAG_AS_SELECTED(state, index, tag) {
+            var $tag = state.tags[index];
+            $tag["is_selected"] = true;
+            state.tags.splice(index, 1, $tag);
+
+            console.log("Updated selected tags");
+        },
+        UNMARK_TAG_AS_SELECTED(state, index) {
+            var $tag = state.tags[index];
+            $tag["is_selected"] = false;
+            state.tags.splice(index, 1, $tag);
         },
     },
 
@@ -111,6 +131,13 @@ const topicStore = new Vuex.Store({
                 .catch(error => {
                     console.log(error);
                 });
+        },
+
+        addSelectedTag(context, index, tag) {
+            context.commit("MARK_TAG_AS_SELECTED", index);
+        },
+        removeSelectedTag(context, index, tag) {
+            context.commit("UNMARK_TAG_AS_SELECTED", index);
         },
     },
 });
