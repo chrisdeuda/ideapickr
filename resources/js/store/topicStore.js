@@ -15,7 +15,8 @@ const topicStore = new Vuex.Store({
     getters: {
         topics: state => state.topics,
         selectedTags: state => {
-            return state.tags.filter(tag => tag.is_selected);
+            var $tags = state.tags.filter(tag => tag.is_selected);
+            return $tags !== undefined ? $tags : [];
         },
     },
     mutations: {
@@ -83,16 +84,17 @@ const topicStore = new Vuex.Store({
         },
         edit({}, topic) {},
 
-        GET_RANDOM_TOPIC(state, topic) {
+        GET_RANDOM_TOPIC(state, payload = []) {
             parent = this;
             const p_action = "/api/v1/topics/randomize";
+            console.log("ids" + payload.selected_tag_ids);
             axios
-                .get(p_action, {})
+                .post(p_action, {
+                    selected_tags_id: payload.selected_tag_ids,
+                })
                 .then(res => {
                     if (res.data.success == true) {
                         parent.commit("CHANGE_RANDOM_TOPIC", res.data.topic);
-                        console.log("Trigger change random topic");
-                    } else {
                     }
                 })
                 .catch(error => {

@@ -42,13 +42,18 @@
         },
         methods: {
             getNewTopic: function(event){
-                // Add categories search
-                this.$store.dispatch("GET_RANDOM_TOPIC", this.Topic);
+                this.$store.dispatch({
+                    type: "GET_RANDOM_TOPIC", 
+                    selected_tag_ids:  this.tag_ids,
+                });
             }
         },
         computed: {
-            selected_tags () {
-                return this.$store.getters.getSelectedTags;
+            selectedTags () {
+                return this.$store.getters.selectedTags;
+            },
+            tag_ids(){
+                return  this.selectedTags.map(a => a.id);
             }
         }
     }
