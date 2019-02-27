@@ -25,6 +25,15 @@ class TopicsController extends Controller
      public function __construct(TopicRepositoryInterface $topic){
          $this->topic = $topic;
      }
+     public function test(){
+         $user_id = 1;
+         $topics = $this->topic->findBy('user_id', $user_id)->first();
+
+        return response()->json([
+            'success' => true,
+            'topics' => $topics->with('tags')->get(),
+        ]);
+     }
     /**
      * Display a listing of the resource.
      *
@@ -128,10 +137,10 @@ class TopicsController extends Controller
      */
     public function getRandomTopic(Request $request, TopicService $TopicService)
     {
-        
+        $selected_tags_id = $request->input('selected_tags_id');
         return response()->json([
             'success' => true,
-            'topic' => $TopicService->getRandomTopic( ),
+            'topic' => $TopicService->getRandomTopic( $selected_tags_id),
         ]);
     }
 
@@ -141,8 +150,4 @@ class TopicsController extends Controller
             'tags' => $TopicService->getTags( ),
         ]);
     }
-
-
-
-    
 }
