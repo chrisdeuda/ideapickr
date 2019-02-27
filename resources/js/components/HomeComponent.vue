@@ -13,12 +13,12 @@
     export default {
         date (){
             return {
-
+                selected_tags: [],
             }
         },
 
         created: function(){
-            this.$store.dispatch('GET_RANDOM_TOPIC');
+            this.$store.dispatch('GET_RANDOM_TOPIC', []);
             this.$store.dispatch('GET_USER_TAGS');
             this.$store.dispatch('GET_TOPICS_STATE');
             console.log("Trigger creations of the page");
