@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-lg">
-                <div class="mx-auto" style="width: 500px;">
+                <div class="mx-auto" style="width: 700px;">
                     <button 
                         v-for="(tag,index) in tags" :key="index"
                         v-on:click="toggleTagSelected(index, tag)"
@@ -73,5 +73,14 @@
 </script>
 
 <style scoped>
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
 
 </style>

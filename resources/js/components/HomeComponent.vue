@@ -1,8 +1,14 @@
 <template>
-  <div class="row justify-content-center">
-      <topics-filter :p_random_topic="random_topic" :p_tags="tags"></topics-filter>
-      <topics-randomize :p_random_topic="random_topic"></topics-randomize>
-  </div>
+    <div>
+
+        <div class="row justify-content-center">
+            <topics-filter :p_random_topic="random_topic" :p_tags="tags"></topics-filter>
+            <topics-randomize :p_random_topic="random_topic"></topics-randomize>
+        </div>
+    </div>
+    
+
+
 </template>
 
 <script>
@@ -31,3 +37,10 @@
         }
     }
 </script>
+
+<style>
+
+
+
+
+</style>

@@ -3,8 +3,8 @@
         <div class="row spacer" >
             <div class="col-lg">
                 <div class="mx-auto" style="width: 500px;">
-                    <h2> {{p_random_topic.title}}</h2>
-                    <p> {{p_random_topic.description}}</p>
+                    <h1> {{p_random_topic.title}}</h1>
+                    <h3> {{p_random_topic.description}}</h3>
 
                 </div>
                 
@@ -12,9 +12,12 @@
         </div>
         <div class="row spacer">
             <div class="col-lg">
-                <div class="mx-auto" style="width: 200px;">
+                <div class="mx-auto" style="width: 300px;">
                     <button type="button" class="btn btn-primary btn-lg"
                         v-on:click="getNewTopic">Give me new topic        
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg"
+                        v-on:click="getNewTopic">Mark as done
                     </button>
                 </div>
             </div>
@@ -60,8 +63,10 @@
 </script>
 
 <style scoped>
-.spacer {
-    margin-top: 40px; /* define margin as you see fit */
-}
-
+    .spacer {
+        margin-top: 40px; /* define margin as you see fit */
+    }
+    h1, h3{
+        color:white;
+    }
 </style>
