@@ -20,8 +20,12 @@
 <script>
     import Vue from 'vue';
 
-    Vue.component('dashboard-header', require('./components/admin/header/header.vue').default);
+    import Header from '@/components/pages/header/header.vue';
+
     export default{
+      components: {
+        Header
+      },
         mounted() {
             console.log('Parent Layout mounted.')
         }

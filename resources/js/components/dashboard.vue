@@ -12,9 +12,9 @@
     import Vue from 'vue';
     import { mapState } from 'vuex';
     import axios from 'axios';
-    import TopicAdd from '@/components/admin/topic-add.vue';    
-    import TopicsList from '@/components/admin/topics-list.vue';
-    import TopicsRandomize from '@/components/admin/topics-randomize.vue';
+    import TopicAdd from '@/components/pages/topic-add.vue';    
+    import TopicsList from '@/components/pages/topics-list.vue';
+    import TopicsRandomize from '@/components/pages/topics-randomize.vue';
     
     
     export default {

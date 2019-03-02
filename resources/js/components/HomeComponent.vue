@@ -14,8 +14,8 @@
 <script>
     import Vue from 'vue';
     import { mapState } from 'vuex';
-    import TopicsRandomize from '@/components/admin/topics-randomize.vue';    
-    import TopicsFilter from '@/components/admin/topics-filter.vue';    
+    import TopicsRandomize from '@/components/pages/topics-randomize.vue';    
+    import TopicsFilter from '@/components/pages/topics-filter.vue';    
     
     export default {
         components: {
