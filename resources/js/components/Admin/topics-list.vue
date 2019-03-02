@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2> I'm topics list</h2>
+        <h2> My List of topics </h2>
         <ul class="list-group">
             <li class="list-group-item" 
                 v-for="(topic,index) in p_topics" :key="index">

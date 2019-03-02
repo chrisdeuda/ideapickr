@@ -26,6 +26,21 @@
     .fade-enter, .fade-leave-active {
       opacity: 0
     }
+
+  html {
+    background: url(/img/patrick-fore-381200-unsplash.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #000;
+  }
+
+  body {
+    padding-top: 60px;
+    background: transparent;
+    font-size: 1.6em;
+  }
 </style>
 
 <script>

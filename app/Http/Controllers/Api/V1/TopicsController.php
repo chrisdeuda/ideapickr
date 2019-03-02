@@ -10,6 +10,7 @@ use App\Services\TopicService;
 
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Tag;
 
 class TopicsController extends Controller
 {
@@ -23,6 +24,15 @@ class TopicsController extends Controller
 
      public function __construct(TopicRepositoryInterface $topic){
          $this->topic = $topic;
+     }
+     public function test(){
+         $user_id = 1;
+         $topics = $this->topic->findBy('user_id', $user_id)->first();
+
+        return response()->json([
+            'success' => true,
+            'topics' => $topics->with('tags')->get(),
+        ]);
      }
     /**
      * Display a listing of the resource.
@@ -118,5 +128,26 @@ class TopicsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Pick a random topics from the list
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getRandomTopic(Request $request, TopicService $TopicService)
+    {
+        $selected_tags_id = $request->input('selected_tags_id');
+        return response()->json([
+            'success' => true,
+            'topic' => $TopicService->getRandomTopic( $selected_tags_id),
+        ]);
+    }
+
+    public function getTags(Request $request, TopicService $TopicService ){
+        return response()->json([
+            'success' => true,
+            'tags' => $TopicService->getTags( ),
+        ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Repositories\TopicRepositoryInterface;
 use Validator;
 
+use App\Models\Topic;
 use App\Models\Tag;
 use App\Models\User;
 use App\Utilities\Tagger as TaggerHelper;
@@ -54,5 +55,47 @@ class TopicService{
             'id' => $new_topic->id,
         ];
         return (object)$response;
+    }
+
+    /**
+     * It will return a random topic from users topics
+     * @return App\Model\Topic
+     */
+    public function getRandomTopic($selected_tags_id = []){
+        $user_id        = 1;
+        $User           = User::find($user_id);
+        
+        $has_ids = count($selected_tags_id)>=1;
+
+        if (!$has_ids){
+            $topics         = $User->topics()->get();
+        } else{
+            // Select topics from users with specific tags
+            // Add filters by tags
+            // @TODO move the code below to seperate functions
+            $topics         = $User->topics()->get();
+            $tags = $User->tags()->findMany($selected_tags_id)->unique("id");;
+
+            $topics =collect([]);
+
+            // Get topics from the list tags_id
+            foreach( $tags as $tag){
+
+                $temp_topics = $tag->topics()->get()->unique("title");
+                
+                foreach ($temp_topics as $topic) {
+                    $topics->push( $topic);
+                }
+            }
+        }
+        $topic_count    = $topics->count();
+        $random_number  = rand(0,$topic_count - 1);
+        $selected_topic = $topics[$random_number];
+        return $selected_topic;
+    }
+
+    public function getTags(){
+        $user_id        = 1;
+        return  User::find($user_id)->tags()->get();
     }
 }

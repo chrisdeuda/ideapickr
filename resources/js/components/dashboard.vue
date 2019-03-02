@@ -3,6 +3,7 @@
         <h1>I'm dashboard</h1>
         <topic-add></topic-add>
         <topics-list :p_topics="topics"></topics-list>
+        <topics-randomize :p_random_topic="random_topic"></topics-randomize>
         <p> {{ topicsLength}}</p>
     </div>
 </template>
@@ -14,8 +15,10 @@
     
     Vue.component('topic-add', require('./admin/topic-add.vue').default);
     Vue.component('topics-list', require('./admin/topics-list.vue').default);
+    Vue.component('topics-randomize', require('./admin/topics-randomize.vue').default);
     
     export default {
+        name: 'Dashboard',
         data(){
             return {
                 Writer : {
@@ -26,7 +29,8 @@
         
         created: function() {
             //this.getUserData();
-            this.$store.dispatch('GET_TOPICS_STATE')
+            this.$store.dispatch('GET_TOPICS_STATE');
+            this.$store.dispatch('GET_RANDOM_TOPIC');
             console.log("Getting Topics from state");
 
         },
@@ -41,7 +45,7 @@
             }
         },
         computed: {
-            ...mapState(['topics']),
+            ...mapState(['topics', 'random_topic']),
             topicsLength() {
                 return this.topics.length;
             },

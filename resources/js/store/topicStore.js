@@ -1,16 +1,23 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axious from "axios";
+import axios from "axios";
 
 Vue.use(Vuex);
 
 const topicStore = new Vuex.Store({
     state: {
-        topics: [{ test: "1" }, { test: "2" }],
-        //topic,
+        topics: [],
+        random_topic: {},
+        topic: {},
+        tags: [],
+        selected_tags: [],
     },
     getters: {
         topics: state => state.topics,
+        selectedTags: state => {
+            var $tags = state.tags.filter(tag => tag.is_selected);
+            return $tags !== undefined ? $tags : [];
+        },
     },
     mutations: {
         FETCH_ALL_TOPICS(state, topics) {
@@ -24,6 +31,22 @@ const topicStore = new Vuex.Store({
                 id: payload.id,
             };
             state.topics.unshift(topic);
+        },
+        CHANGE_RANDOM_TOPIC(state, topic) {
+            state.random_topic = topic;
+        },
+        CHANGE_TAGS(state, tags) {
+            state.tags = tags;
+        },
+        MARK_TAG_AS_SELECTED(state, index, tag) {
+            var $tag = state.tags[index];
+            $tag["is_selected"] = true;
+            state.tags.splice(index, 1, $tag);
+        },
+        UNMARK_TAG_AS_SELECTED(state, index) {
+            var $tag = state.tags[index];
+            $tag["is_selected"] = false;
+            state.tags.splice(index, 1, $tag);
         },
     },
 
@@ -60,6 +83,54 @@ const topicStore = new Vuex.Store({
                 });
         },
         edit({}, topic) {},
+
+        GET_RANDOM_TOPIC(state, payload = []) {
+            parent = this;
+            const p_action = "/api/v1/topics/randomize";
+            console.log("ids" + payload.selected_tag_ids);
+            axios
+                .post(p_action, {
+                    selected_tags_id: payload.selected_tag_ids,
+                })
+                .then(res => {
+                    if (res.data.success == true) {
+                        parent.commit("CHANGE_RANDOM_TOPIC", res.data.topic);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        GET_USER_TAGS(state, tags) {
+            parent = this;
+            const p_action = "/api/v1/tags";
+            axios
+                .get(p_action, {})
+                .then(res => {
+                    if (res.data.success == true) {
+                        parent.commit("CHANGE_TAGS", res.data.tags);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        addSelectedTag(context, index, tag) {
+            context.commit("MARK_TAG_AS_SELECTED", index);
+        },
+        removeSelectedTag(context, index, tag) {
+            context.commit("UNMARK_TAG_AS_SELECTED", index);
+        },
+        clearAllSelectedTags(context) {
+            var key = "is_selected";
+            var $tags = context.state.tags.map(function(tag) {
+                tag[key] = false;
+                return tag;
+            });
+            context.commit("CHANGE_TAGS", $tags);
+        },
     },
 });
 
