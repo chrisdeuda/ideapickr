@@ -32,6 +32,7 @@
     import axios from 'axios';
     import { mapState } from 'vuex';
     export default {
+        name: 'topics-randomize',
         data() {
             return {
                 Topics: null,

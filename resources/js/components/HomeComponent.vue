@@ -14,12 +14,12 @@
 <script>
     import Vue from 'vue';
     import { mapState } from 'vuex';
-    import TopisRandomize from '@/components/admin/topics-randomize';    
-    import TopicsFilter from '@/components/admin/topics-filter';    
+    import TopicsRandomize from '@/components/admin/topics-randomize.vue';    
+    import TopicsFilter from '@/components/admin/topics-filter.vue';    
     
     export default {
         components: {
-            TopisRandomize,
+            TopicsRandomize,
             TopicsFilter,
         },
         data (){

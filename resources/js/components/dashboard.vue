@@ -3,7 +3,7 @@
         <h1>I'm dashboard</h1>
         <topic-add></topic-add>
         <topics-list :p_topics="topics"></topics-list>
-        <topics-randomize :p_random_topic="random_topic"></topics-randomize>
+        <TopicsRandomize :p_random_topic="random_topic"></TopicsRandomize>
         <p> {{ topicsLength}}</p>
     </div>
 </template>
@@ -22,7 +22,7 @@
         components: {
             TopicAdd,
             TopicsList,
-            TopicsRandomize
+            TopicsRandomize,
         },
         data(){
             return {
