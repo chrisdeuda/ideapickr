@@ -1,7 +1,8 @@
 {
     "name": "ideapickr",
     "engines": {
-        "node": "11.x"
+        "node": "11.x",
+        "npm": "6.4.x"
     },
     "private": true,
     "scripts": {
