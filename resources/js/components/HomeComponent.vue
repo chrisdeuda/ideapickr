@@ -14,10 +14,15 @@
 <script>
     import Vue from 'vue';
     import { mapState } from 'vuex';
-    Vue.component('topics-randomize', require('./admin/topics-randomize.vue').default);
-    Vue.component('topics-filter', require('./admin/topics-filter.vue').default);
+    import TopisRandomize from '@/components/admin/topics-randomize';    
+    import TopicsFilter from '@/components/admin/topics-filter';    
+    
     export default {
-        date (){
+        components: {
+            TopisRandomize,
+            TopicsFilter,
+        },
+        data (){
             return {
                 selected_tags: [],
             }

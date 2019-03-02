@@ -12,13 +12,18 @@
     import Vue from 'vue';
     import { mapState } from 'vuex';
     import axios from 'axios';
+    import TopicAdd from '@/components/admin/topic-add.vue';    
+    import TopicsList from '@/components/admin/topics-list.vue';
+    import TopicsRandomize from '@/components/admin/topics-randomize.vue';
     
-    Vue.component('topic-add', require('./admin/topic-add.vue').default);
-    Vue.component('topics-list', require('./admin/topics-list.vue').default);
-    Vue.component('topics-randomize', require('./admin/topics-randomize.vue').default);
     
     export default {
         name: 'Dashboard',
+        components: {
+            TopicAdd,
+            TopicsList,
+            TopicsRandomize
+        },
         data(){
             return {
                 Writer : {
