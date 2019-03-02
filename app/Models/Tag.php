@@ -16,12 +16,12 @@ class Tag extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\Models\Users');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function topics()
     {
-        return $this->belongsToMany('App\Models\Topics');
+        return $this->belongsToMany('App\Models\Topic');
     }
 
 }
