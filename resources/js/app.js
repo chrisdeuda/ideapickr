@@ -33,7 +33,7 @@ Vue.use(VueAxios, axios);
 
 Vue.component(
     "example-component",
-    require("@/components/ExampleComponent.vue").default
+    require("./components/ExampleComponent.vue").default
 );
 
 /**
