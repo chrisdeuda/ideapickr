@@ -12,6 +12,9 @@ const mix = require("laravel-mix");
  */
 
 mix.webpackConfig({
+    resolveLoader: {
+        modules: [path.join(__dirname, "node_modules")],
+    },
     resolve: {
         alias: {
             "@": __dirname + "/resources/js",
