@@ -1,4 +1,8 @@
 {
+    "name": "ideapickr",
+    "engines": {
+        "node": "11.x"
+    },
     "private": true,
     "scripts": {
         "dev": "npm run development",
