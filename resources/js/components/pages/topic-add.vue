@@ -69,6 +69,7 @@
 
                 // Process the request
 
+                this.clear();
             }
 
         }
