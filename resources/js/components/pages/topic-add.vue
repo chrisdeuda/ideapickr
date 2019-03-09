@@ -40,36 +40,15 @@
         methods: {
             save: function(event){
                 event.preventDefault();
-
                 this.$store.dispatch("SAVE_TOPIC_STATE", this.Topic);
-
-
-
-                // //@TODO Add validations
-                // alert("Trying to save it");
-                // const self = this;
-                // const p_action = "/api/v1/topic";
-                // axios.post('/api/v1/topic', {
-                //             title: self.Topic.title,
-                //             description: self.Topic.description,
-
-                //             //Add state Management here so that thelist will be updated
-
-
-                // }).then((res) => {
-                //     if (res.data.success == true) {
-                //         console.log(res);
-                //     } else {
-                        
-                //     }
-                // }).catch((error) => {
-                //     console.log(error);
-                // });
-                
-
-                // Process the request
-
                 this.clear();
+            },
+            clear: function(){
+                this.Topic = {
+                    title: null,
+                    description: null,
+                    id: null,
+                }
             }
 
         }
